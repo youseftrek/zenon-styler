@@ -3,6 +3,7 @@ import { El_Messiri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import { ThemeProvider } from "@/providers/theme-provider";
+import Footer from "./_components/Footer";
 
 const arFont = El_Messiri({
   subsets: ["latin"],
@@ -33,9 +34,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="mx-auto lg:px-16 p-2 w-full max-w-[1920px] h-full container">
+          <main className="relative mx-auto lg:px-16 p-2 w-full max-w-[1920px] container">
             {children}
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

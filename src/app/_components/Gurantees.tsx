@@ -2,7 +2,7 @@ import { HandCoins, Headset, ShieldCheck, Truck } from "lucide-react";
 
 const Gurantees = () => {
   return (
-    <section className="relative my-24 w-full overflow-hidden" id="guarantees">
+    <section className="relative mx-auto my-24 w-fit" id="guarantees">
       <h2 className="-top-6 right-1/2 absolute opacity-10 font-bold text-5xl text-primary whitespace-nowrap translate-x-1/2 overflow-hidden">
         الضمانات و الإسترجاع
       </h2>
