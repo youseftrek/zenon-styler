@@ -17,7 +17,7 @@ const Gurantees = () => {
       {/* Guarantees Grid */}
       <div className="gap-4 grid grid-cols-2 md:grid-cols-4 max-w-full">
         {/* Guarantee 1 */}
-        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md aspect-square">
+        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md h-full aspect-square">
           <Truck size={60} className="text-primary" />
           <div className="text-center">
             <h3 className="font-bold text-base md:text-xl">شحن مجاني</h3>
@@ -27,7 +27,7 @@ const Gurantees = () => {
           </div>
         </div>
         {/* Guarantee 2 */}
-        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md aspect-square">
+        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md h-full aspect-square">
           <Headset size={60} className="text-primary" />
           <div className="text-center">
             <h3 className="font-bold text-base md:text-xl">
@@ -39,7 +39,7 @@ const Gurantees = () => {
           </div>
         </div>
         {/* Guarantee 3 */}
-        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md aspect-square">
+        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md h-full aspect-square">
           <ShieldCheck size={60} className="text-primary" />
           <div className="text-center">
             <h3 className="font-bold text-base md:text-xl">ضمان المنتج</h3>
@@ -49,7 +49,7 @@ const Gurantees = () => {
           </div>
         </div>
         {/* Guarantee 4 */}
-        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md aspect-square">
+        <div className="flex flex-col justify-center items-center gap-2 bg-card p-4 border rounded-md h-full aspect-square">
           <HandCoins size={60} className="text-primary" />
           <div className="text-center">
             <h3 className="font-bold text-base md:text-xl">
