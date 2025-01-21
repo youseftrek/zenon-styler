@@ -13,14 +13,14 @@ function Navbar() {
             src="/images/logo-dark.png"
             alt="logo"
             width={80}
-            height={80}
+            height={80 / 1.938}
             className="dark:block hidden"
           />
           <Image
             src="/images/logo-light.png"
             alt="logo"
             width={80}
-            height={80}
+            height={80 / 1.938}
             className="dark:hidden"
           />
         </Link>

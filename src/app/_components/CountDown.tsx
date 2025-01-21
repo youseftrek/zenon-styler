@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -7,30 +8,37 @@ interface CountdownProps {
 }
 
 const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
-  const calculateTimeLeft = () => {
-    const now = Date.now();
-    const end = new Date(endDate).getTime();
-    return Math.max(end - now, 0);
-  };
+  const [timeLeft, setTimeLeft] = useState<number | null>(null); // Start with null to defer calculations to the client
 
-  const [timeLeft, setTimeLeft] = useState<number>(() => {
+  useEffect(() => {
+    // Initialize timeLeft on the client
+    const calculateTimeLeft = () => {
+      const now = Date.now();
+      const end = new Date(endDate).getTime();
+      return Math.max(end - now, 0);
+    };
+
     const savedEndDate = localStorage.getItem("countdownEndDate");
     if (savedEndDate) {
       const savedTimeLeft = new Date(savedEndDate).getTime() - Date.now();
-      return Math.max(savedTimeLeft, 0);
+      setTimeLeft(Math.max(savedTimeLeft, 0));
     } else {
       localStorage.setItem("countdownEndDate", endDate);
-      return calculateTimeLeft();
+      setTimeLeft(calculateTimeLeft());
     }
-  });
 
-  useEffect(() => {
+    // Update timeLeft every second
     const interval = setInterval(() => {
-      setTimeLeft((prev) => Math.max(prev - 1000, 0));
+      setTimeLeft((prev) => (prev !== null ? Math.max(prev - 1000, 0) : null));
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [endDate]);
+
+  if (timeLeft === null) {
+    // Show a loading state while initializing
+    return <div className="text-center text-gray-500">جاري التحميل...</div>;
+  }
 
   if (timeLeft <= 0) {
     return (
