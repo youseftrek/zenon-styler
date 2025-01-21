@@ -62,7 +62,7 @@ const OrderForm = () => {
 
       if (response.ok) {
         setIsSubmitted(true); // Mark form as submitted
-        alert("تم تقديم الطلب بنجاح!");
+        alert("تم تقديم الطلب بنجاح - سيتم التواصل معكم في اسرع وقت ممكن.");
       } else {
         alert("حدث خطأ في تقديم الطلب.");
       }

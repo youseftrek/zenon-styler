@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: "Zenon Store <onboarding@resend.dev>",
       to: ["zenon.orders@gmail.com"],
-      subject: "📦New Order | Zenon Styler",
+      subject: `📦New Order | ${orderData.firstName + " " + orderData.lastName}`,
       react: EmailTemplate(orderData) as React.ReactElement,
     });
 
