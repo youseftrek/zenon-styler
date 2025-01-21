@@ -6,7 +6,7 @@ import { ModeToggle } from "./ModeToggle";
 function Navbar() {
   return (
     <header className="top-0 z-50 fixed flex justify-center items-center border-grid bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b w-full">
-      <nav className="flex justify-between items-center p-1.5 container">
+      <nav className="flex justify-between items-center lg:px-14 p-1.5 max-w-[1920px] container">
         <MobileMenu />
         <Link href="#home">
           <Image

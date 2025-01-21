@@ -61,4 +61,7 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .container-align {
+    @apply px-2 md:px-6 lg:px-14 max-w-[1920px] container;
+  }
 }

@@ -6,7 +6,7 @@ import Testimonials from "./_components/Testimonials";
 
 export default function Home() {
   return (
-    <div className="h-screen">
+    <div className="mx-auto max-w-[1920px] container">
       <Hero />
       <ProductDescription />
       <BoxContent />

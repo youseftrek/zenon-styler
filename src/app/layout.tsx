@@ -33,7 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="mx-auto p-1.5 w-full h-full container">
+          <main className="mx-auto lg:px-16 p-1.5 w-full max-w-[1920px] h-full container">
             {children}
           </main>
         </ThemeProvider>
