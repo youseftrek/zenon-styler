@@ -8,29 +8,29 @@ import {
 } from "lucide-react";
 
 export const NavLinks = [
-  { name: "الصفحة الرئيسيــــــــــــــــــــة", url: "#home", icon: House },
+  { name: "الصفحة الرئيسيــــة", url: "#home", icon: House },
   {
-    name: "الوصـــــــــــــــــــــــــــــــــــــــــــــف",
+    name: "الوصـــــــــــــــــــــــــــــف",
     url: "#info",
     icon: BookOpenText,
   },
   {
-    name: "محتويات العلبــــــــــــــــــــــــة",
+    name: "محتويات العلبـــــــــة",
     url: "#box-content",
     icon: TableOfContents,
   },
   {
-    name: "الـــــــضمانات و الإسترجاع",
+    name: "الـــــــــــــــــــــــضمانات",
     url: "#guarantees",
     icon: ShieldCheck,
   },
   {
-    name: "رأي العمـــــــــــــــــــــــــــــــــلاء",
+    name: "رأي العمــــــــــــــــــلاء",
     url: "#testimonials",
     icon: Star,
   },
   {
-    name: "نموذج الطلــــــــــــــــــــــــــــب",
+    name: "نموذج الطلــــــــــــــب",
     url: "#order",
     icon: Package,
   },
