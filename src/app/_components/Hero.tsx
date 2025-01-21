@@ -8,7 +8,7 @@ const Hero = () => {
     <section className="mx-auto my-24" id="home">
       <div className="items-center gap-8 grid lg:grid-cols-2">
         <div className="lg:text-right flex flex-col justify-center items-center text-center">
-          <Badge variant="outline">
+          <Badge variant="outline" className="text-primary">
             متجر زينون يقدم
             <ArrowDownLeft className="ml-2 size-4" />
           </Badge>
