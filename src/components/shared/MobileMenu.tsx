@@ -21,8 +21,8 @@ const MobileMenu = () => {
       </SheetTrigger>
       <SheetContent side="top">
         <SheetHeader>
-          <SheetTitle>القائمة الرئيسية</SheetTitle>
-          <ul className="flex flex-col gap-2">
+          <SheetTitle className="text-center">القائمة الرئيسية</SheetTitle>
+          <ul className="flex flex-col gap-2 mx-auto w-full max-w-5xl">
             {NavLinks.map((link) => (
               <li
                 key={link.name}

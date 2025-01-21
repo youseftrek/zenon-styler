@@ -18,10 +18,10 @@ const OrderForm = () => {
 
   // Function to calculate the price per item based on the quantity
   const getItemPrice = (): number => {
-    if (quantity === 1) return 170;
-    if (quantity === 2) return 150;
-    if (quantity >= 3) return 145;
-    return 170; // Default fallback
+    if (quantity === 1) return 149;
+    if (quantity === 2) return 139;
+    if (quantity >= 3) return 134;
+    return 149; // Default fallback
   };
 
   // Calculate the total price
@@ -52,8 +52,8 @@ const OrderForm = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="1">قطعة واحدة</SelectItem>
-                <SelectItem value="2">قطعتان - خصم 40 ريال</SelectItem>
-                <SelectItem value="3">ثلاثة قطع - خصم 75 ريال</SelectItem>
+                <SelectItem value="2">قطعتان - خصم 20 ريال</SelectItem>
+                <SelectItem value="3">ثلاثة قطع - خصم 45 ريال</SelectItem>
               </SelectContent>
             </Select>
           </div>
