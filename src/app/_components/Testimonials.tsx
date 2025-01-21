@@ -125,7 +125,7 @@ export default function Testimonials() {
                   {testimonial.location}
                 </div>
               </div>
-              <blockquote className="mb-10 text-center text-lg">
+              <blockquote className="mb-10 p-1 text-center text-lg">
                 {testimonial.content}
               </blockquote>
             </div>
