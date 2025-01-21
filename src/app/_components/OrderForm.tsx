@@ -12,26 +12,66 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Loader2 } from "lucide-react";
 
 const OrderForm = () => {
   const [quantity, setQuantity] = useState<number>(1);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-  // Function to calculate the price per item based on the quantity
   const getItemPrice = (): number => {
     if (quantity === 1) return 149;
     if (quantity === 2) return 139;
     if (quantity >= 3) return 134;
-    return 149; // Default fallback
+    return 149;
   };
 
-  // Calculate the total price
   const calculateTotalPrice = (): number => {
     return getItemPrice() * quantity;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("تم تقديم الطلب بنجاح!");
+    setIsSubmitting(true);
+
+    const orderData = {
+      firstName,
+      lastName,
+      phone,
+      city,
+      address,
+      notes,
+      quantity,
+      totalPrice: calculateTotalPrice(),
+    };
+
+    try {
+      const response = await fetch("/api/send-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true); // Mark form as submitted
+        alert("تم تقديم الطلب بنجاح!");
+      } else {
+        alert("حدث خطأ في تقديم الطلب.");
+      }
+    } catch (error) {
+      alert("حدث خطأ في تقديم الطلب.");
+      console.error("Error sending order:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,6 +86,7 @@ const OrderForm = () => {
             <Label htmlFor="quantity">كمية:</Label>
             <Select
               onValueChange={(value: unknown) => setQuantity(Number(value))}
+              disabled={isSubmitted}
             >
               <SelectTrigger>
                 <SelectValue placeholder="اختر الكمية" />
@@ -80,20 +121,48 @@ const OrderForm = () => {
             <div className="gap-4 grid grid-cols-2">
               <div>
                 <Label htmlFor="firstName">الاسم الأول</Label>
-                <Input id="firstName" placeholder="أدخل الاسم الأول" required />
+                <Input
+                  id="firstName"
+                  placeholder="أدخل الاسم الأول"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  disabled={isSubmitted}
+                />
               </div>
               <div>
                 <Label htmlFor="lastName">الاسم الأخير</Label>
-                <Input id="lastName" placeholder="أدخل الاسم الأخير" required />
+                <Input
+                  id="lastName"
+                  placeholder="أدخل الاسم الأخير"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  disabled={isSubmitted}
+                />
               </div>
             </div>
             <div className="mt-4">
               <Label htmlFor="phone">رقم هاتف المستلم</Label>
-              <Input id="phone" placeholder="أدخل رقم الهاتف" required />
+              <Input
+                id="phone"
+                placeholder="أدخل رقم الهاتف"
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                disabled={isSubmitted}
+              />
             </div>
             <div className="mt-4">
               <Label htmlFor="city">المدينة</Label>
-              <Input id="city" placeholder="أدخل المدينة" required />
+              <Input
+                id="city"
+                placeholder="أدخل المدينة"
+                required
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                disabled={isSubmitted}
+              />
             </div>
             <div className="mt-4">
               <Label htmlFor="address">العنوان بالتفصيل</Label>
@@ -101,6 +170,9 @@ const OrderForm = () => {
                 id="address"
                 placeholder="أدخل العنوان بالتفصيل"
                 required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                disabled={isSubmitted}
               />
             </div>
             <div className="mt-4">
@@ -110,10 +182,26 @@ const OrderForm = () => {
               <Textarea
                 id="notes"
                 placeholder="أدخل أي ملاحظات إضافية - يمكنكم إضافة رقم تواصل إضافي"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                disabled={isSubmitted}
               />
             </div>
-            <Button type="submit" className="mt-3 w-full">
-              إتمام الطلب
+            <Button
+              type="submit"
+              className={`mt-3 w-full ${
+                isSubmitted ? "bg-green-600 hover:bg-green-600" : ""
+              }`}
+              disabled={isSubmitting || isSubmitted}
+            >
+              {isSubmitting ? (
+                <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+              ) : null}
+              {isSubmitted
+                ? "تم تقديم الطلب بنجاح"
+                : isSubmitting
+                  ? "جاري التحميل..."
+                  : "إتمام الطلب"}
             </Button>
           </form>
         </CardContent>
