@@ -1,7 +1,9 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowDownLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -20,13 +22,22 @@ const Hero = () => {
             جميع ستايلات الشعر بدون تلف بدون تقصف، الرفيق المثالي لتصفيف الشعر
           </p>
           <div className="flex justify-center gap-2 w-full">
-            <Button className="w-1/2 sm:w-auto" size="lg">
+            <Link
+              href="#order"
+              className={cn(buttonVariants({ size: "lg" }), "w-1/2 sm:w-auto")}
+            >
               شراء الآن
-            </Button>
-            <Button variant="outline" className="w-1/2 sm:w-auto" size="lg">
+            </Link>
+            <Link
+              href="#info"
+              className={cn(
+                buttonVariants({ size: "lg", variant: "outline" }),
+                "w-1/2 sm:w-auto"
+              )}
+            >
               وصف المنتج
               <ArrowDownLeft className="ml-2 size-4" />
-            </Button>
+            </Link>
           </div>
         </div>
         <Image

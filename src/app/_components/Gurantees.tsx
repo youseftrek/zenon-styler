@@ -7,7 +7,7 @@ const Gurantees = () => {
       id="guarantees"
     >
       {/* Background Title */}
-      <h2 className="top-0 left-1/2 absolute opacity-10 font-bold text-2xl text-center text-primary -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <h2 className="top-0 left-1/2 absolute opacity-10 font-bold text-5xl text-center text-primary -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         الضمانات
       </h2>
       {/* Main Title */}
