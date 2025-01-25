@@ -61,7 +61,12 @@ export default function RootLayout({
           <Navbar />
           <main className="relative mx-auto lg:px-16 p-2 w-full max-w-[1920px] container">
             {children}
-            <Toaster richColors />
+            <Toaster
+              richColors
+              position="top-center"
+              className={arFont.className}
+              dir="rtl"
+            />
           </main>
           <Footer />
         </ThemeProvider>
