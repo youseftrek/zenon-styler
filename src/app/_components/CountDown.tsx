@@ -18,12 +18,12 @@ const Countdown: React.FC<CountdownProps> = ({ endDate }) => {
       return Math.max(end - now, 0);
     };
 
-    const savedEndDate = localStorage.getItem("countdownEndDate");
+    const savedEndDate = localStorage.getItem("endDate");
     if (savedEndDate) {
       const savedTimeLeft = new Date(savedEndDate).getTime() - Date.now();
       setTimeLeft(Math.max(savedTimeLeft, 0));
     } else {
-      localStorage.setItem("countdownEndDate", endDate);
+      localStorage.setItem("endDate", endDate);
       setTimeLeft(calculateTimeLeft());
     }
 

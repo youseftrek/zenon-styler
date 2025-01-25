@@ -2,7 +2,7 @@ import Image from "next/image";
 import Countdown from "./CountDown";
 
 const Offer = () => {
-  const endDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString();
+  const endDate = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString();
   return (
     <section className="mx-auto px-4 pt-12 w-full max-w-4xl" id="order">
       <div className="relative mb-2">

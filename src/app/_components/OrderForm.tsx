@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,9 +14,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const OrderForm = () => {
-  const [quantity, setQuantity] = useState<number>(1);
+  const router = useRouter();
+  const [quantity, setQuantity] = useState<number | null>(null);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -24,21 +27,29 @@ const OrderForm = () => {
   const [notes, setNotes] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [quantityError, setQuantityError] = useState<string>("");
 
   const getItemPrice = (): number => {
-    if (quantity === 1) return 149;
-    if (quantity === 2) return 139;
-    if (quantity >= 3) return 134;
-    return 149;
+    if (quantity === 1) return 159;
+    if (quantity === 2) return 149;
+    if (quantity && quantity >= 3) return 144;
+    return 159;
   };
 
   const calculateTotalPrice = (): number => {
-    return getItemPrice() * quantity;
+    return (quantity ?? 0) * getItemPrice();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    if (!quantity) {
+      setQuantityError("الرجاء اختيار الكمية.");
+      toast.error("الرجاء اختيار الكمية قبل إتمام الطلب.");
+      setIsSubmitting(false);
+      return;
+    }
 
     const orderData = {
       firstName,
@@ -61,13 +72,14 @@ const OrderForm = () => {
       });
 
       if (response.ok) {
-        setIsSubmitted(true); // Mark form as submitted
-        alert("تم تقديم الطلب بنجاح - سيتم التواصل معكم في اسرع وقت ممكن.");
+        setIsSubmitted(true);
+        toast.success("تم تقديم الطلب بنجاح.");
+        router.push("?success=true", { scroll: false });
       } else {
-        alert("حدث خطأ في تقديم الطلب.");
+        toast.error("حدث خطأ في تقديم الطلب. حاول مجددًا لاحقًا.");
       }
     } catch (error) {
-      alert("حدث خطأ في تقديم الطلب.");
+      toast.error("حدث خطأ غير متوقع. حاول مجددًا لاحقًا.");
       console.error("Error sending order:", error);
     } finally {
       setIsSubmitting(false);
@@ -85,7 +97,10 @@ const OrderForm = () => {
           <div className="mb-6">
             <Label htmlFor="quantity">كمية:</Label>
             <Select
-              onValueChange={(value: unknown) => setQuantity(Number(value))}
+              onValueChange={(value: unknown) => {
+                setQuantity(Number(value));
+                setQuantityError(""); // Clear error on selection
+              }}
               disabled={isSubmitted}
             >
               <SelectTrigger>
@@ -97,6 +112,9 @@ const OrderForm = () => {
                 <SelectItem value="3">ثلاثة قطع - خصم 45 ريال</SelectItem>
               </SelectContent>
             </Select>
+            {quantityError && (
+              <p className="mt-1 text-red-500 text-sm">{quantityError}</p>
+            )}
           </div>
 
           {/* Pricing display */}

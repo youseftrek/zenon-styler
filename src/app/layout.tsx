@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Footer from "./_components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const arFont = El_Messiri({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
           <Navbar />
           <main className="relative mx-auto lg:px-16 p-2 w-full max-w-[1920px] container">
             {children}
+            <Toaster richColors />
           </main>
           <Footer />
         </ThemeProvider>
