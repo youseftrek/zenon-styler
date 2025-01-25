@@ -73,7 +73,7 @@ const OrderForm = () => {
 
       if (response.ok) {
         setIsSubmitted(true);
-        toast.success("تم تقديم الطلب بنجاح.");
+        alert("تم تقديم الطلب بنجاح، سيتم التواصل معك قريبا.");
         router.push("?success=true", { scroll: false });
       } else {
         toast.error("حدث خطأ في تقديم الطلب. حاول مجددًا لاحقًا.");
