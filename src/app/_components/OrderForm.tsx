@@ -122,13 +122,16 @@ const OrderForm = () => {
             <p>
               سعر القطعة:{" "}
               <span className="font-bold text-pink-600">
-                {getItemPrice()} ريال
+                {calculateTotalPrice() ? getItemPrice() : "يرجى تحديد الكمية"}{" "}
+                {calculateTotalPrice() ? "ريال" : " "}
               </span>
             </p>
             <p>
               السعر الكلي:{" "}
               <span className="font-bold text-green-600">
-                {calculateTotalPrice()} ريال + شحن مجاني
+                {calculateTotalPrice()
+                  ? "ريال + شحن مجاني"
+                  : "يرجى تحديد الكمية"}
               </span>
             </p>
           </div>
